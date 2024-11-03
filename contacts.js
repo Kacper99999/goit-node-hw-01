@@ -11,7 +11,6 @@ export const listContacts = async() => {
     try{
         const data = await fs.readFile(contactsPath, "utf-8");
         console.log(JSON.parse(data));
-        return JSON.parse(data);
     }
     catch(error){
         console.error(error);
@@ -21,7 +20,8 @@ export const listContacts = async() => {
 
 export const getContactById = async(id) => {
     try{
-        const contacts = await listContacts();
+        const data = await fs.readFile(contactsPath, "utf-8");
+        const contacts = JSON.parse(data);
         const contact = contacts.find((con) =>  con.id === id );
         if(contact){
             console.log(contact);
@@ -37,7 +37,8 @@ export const getContactById = async(id) => {
 
 export const removeContact = async(id) => {
     try{
-        const contacts = await listContacts();
+        const data = await fs.readFile(contactsPath, "utf-8");
+        const contacts = JSON.parse(data);
         const updatedContacts = contacts.filter((con) => con.id !== id);
         await fs.writeFile(contactsPath, JSON.stringify(updatedContacts, null, 2));
         console.log(`contact o ID ${id} został usunięty`);
@@ -49,7 +50,8 @@ export const removeContact = async(id) => {
 
  export const addContact = async(name, email, phone) => {
     try{
-        const contacts = await listContacts();
+        const data = await fs.readFile(contactsPath, "utf-8");
+        const contacts = JSON.parse(data);
         const exists = contacts.some((con) => con.email === email || con.phone === phone);
         if(exists){
             console.log("Kontakt już istnieje");
@@ -63,6 +65,7 @@ export const removeContact = async(id) => {
             };
             contacts.push(newContact);
             await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+            console.log(newContact);
             console.log("Nowy kontakt został dodany");
         }
     }
