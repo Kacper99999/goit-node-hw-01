@@ -1,0 +1,22 @@
+{
+  "name": "goit-node-hw-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "comander": "^0.0.1-security",
+    "commander": "^12.1.0",
+    "nanoid": "^5.0.8",
+    "yargs": "^17.7.2"
+  }
+}
